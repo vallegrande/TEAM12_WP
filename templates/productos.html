@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Todos los Productos - Carnicería Pochito{% endblock %}
+
+{% block content %}
+<section class="bg-gray-100 py-16 text-center shadow-lg">
+    <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-800">Todos Nuestros Productos</h1>
+</section>
+
+<section class="py-12 px-4 sm:px-6 lg:px-8 bg-gray-100 max-w-7xl mx-auto">
+
+    <div class="flex items-center justify-end mb-6">
+        <label for="sort-precio" class="mr-2 text-sm font-medium text-gray-700">Ordenar por:</label>
+        <select id="sort-precio" class="border rounded px-3 py-2 text-sm">
+            <option value="default">Por defecto</option>
+            <option value="precio-asc">Precio: menor a mayor</option>
+            <option value="precio-desc">Precio: mayor a menor</option>
+        </select>
+    </div>
+
+    <!-- Carne de Res -->
+    <h2 class="text-2xl font-bold text-red-600 mb-6 mt-12">Carne de Res</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Repite este bloque por cada producto de res -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl product-card" data-precio="25.50">
+            <img src="{{ url_for('static', filename='image/aguja.jpg') }}" alt="Aguja" class="w-full h-56 object-cover">
+            <div class="p-5 text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Aguja</h3>
+                <p class="text-2xl font-extrabold text-red-600 mb-2">S/. 25.50</p>
+                <button class="bg-red-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300 transform hover:scale-105">Agregar</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl product-card" data-precio="28.00">
+            <img src="{{ url_for('static', filename='image/bistec.jpg') }}" alt="Bistec" class="w-full h-56 object-cover">
+            <div class="p-5 text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Bistec</h3>
+                <p class="text-2xl font-extrabold text-red-600 mb-2">S/. 28.00</p>
+                <button class="bg-red-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300 transform hover:scale-105">Agregar</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl product-card" data-precio="40.00">
+            <img src="{{ url_for('static', filename='image/lomo.jpg') }}" alt="Lomo" class="w-full h-56 object-cover">
+            <div class="p-5 text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Lomo</h3>
+                <p class="text-2xl font-extrabold text-red-600 mb-2">S/. 40.00</p>
+                <button class="bg-red-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300 transform hover:scale-105">Agregar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carne de Cerdo -->
+    <h2 class="text-2xl font-bold text-pink-600 mb-6 mt-12">Carne de Cerdo</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl product-card" data-precio="25.50">
+            <img src="{{ url_for('static', filename='image/chuletas_cerdo.jpg') }}" alt="Chuletas de Cerdo" class="w-full h-56 object-cover">
+            <div class="p-5 text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Chuletas</h3>
+                <p class="text-2xl font-extrabold text-pink-600 mb-2">S/. 25.50</p>
+                <button class="bg-pink-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-pink-700 transition duration-300 transform hover:scale-105">Agregar</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl product-card" data-precio="28.00">
+            <img src="{{ url_for('static', filename='image/panceta_cerdo.jpg') }}" alt="Panceta" class="w-full h-56 object-cover">
+            <div class="p-5 text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Panceta</h3>
+                <p class="text-2xl font-extrabold text-pink-600 mb-2">S/. 28.00</p>
+                <button class="bg-pink-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-pink-700 transition duration-300 transform hover:scale-105">Agregar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carne de Pollo -->
+    <h2 class="text-2xl font-bold text-yellow-600 mb-6 mt-12">Carne de Pollo</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl product-card" data-precio="15.00">
+            <img src="{{ url_for('static', filename='image/pechuga_pollo.jpg') }}" alt="Pechuga de Pollo" class="w-full h-56 object-cover">
+            <div class="p-5 text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Pechuga</h3>
+                <p class="text-2xl font-extrabold text-yellow-600 mb-2">S/. 15.00</p>
+                <button class="bg-yellow-500 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-yellow-600 transition duration-300 transform hover:scale-105">Agregar</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl product-card" data-precio="12.00">
+            <img src="{{ url_for('static', filename='image/muslo_pollo.jpg') }}" alt="Muslo de Pollo" class="w-full h-56 object-cover">
+            <div class="p-5 text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Muslo</h3>
+                <p class="text-2xl font-extrabold text-yellow-600 mb-2">S/. 12.00</p>
+                <button class="bg-yellow-500 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-yellow-600 transition duration-300 transform hover:scale-105">Agregar</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl product-card" data-precio="10.50">
+            <img src="{{ url_for('static', filename='image/alitas_pollo.jpg') }}" alt="Alitas de Pollo" class="w-full h-56 object-cover">
+            <div class="p-5 text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Alitas</h3>
+                <p class="text-2xl font-extrabold text-yellow-600 mb-2">S/. 10.50</p>
+                <button class="bg-yellow-500 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-yellow-600 transition duration-300 transform hover:scale-105">Agregar</button>
+            </div>
+        </div>
+    </div>
+
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/filtro-precio.js') }}"></script>
+{% endblock %}
