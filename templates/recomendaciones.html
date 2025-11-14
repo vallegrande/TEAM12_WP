@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libro de Reclamaciones | POCHITO Carnes</title>
+
+    <!-- ✅ Tailwind generado -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+
+    <!-- ✅ Estilos personalizados -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/recomendaciones.css') }}">
+</head>
+
+<body class="bg-gray-100 min-h-screen font-sans antialiased">
+
+    <!-- 🔝 Encabezado -->
+    <header class="bg-gray-800 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <a href="/" class="text-xl font-extrabold tracking-wider flex items-center">
+                🥩 POCHITO | Carnes
+            </a>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="/" class="hover:text-amber-400 transition-colors">Inicio</a></li>
+                    <li><a href="/nosotros" class="hover:text-amber-400 transition-colors">Nosotros</a></li>
+                    <li><a href="/recomendaciones" class="text-amber-500 font-bold">Libro de Recomendaciones</a></li>
+                </ul>
+            </nav>
+            <a href="/logout" class="text-sm flex items-center hover:text-red-400 transition-colors">
+                <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                    </path>
+                </svg>
+                Cerrar Sesión
+            </a>
+        </div>
+    </header>
+
+    <!-- 💬 Contenido principal -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-2xl border border-gray-200">
+
+            <h1 class="text-4xl font-extrabold text-gray-800 text-center mb-2 leading-tight">✨ Tu Opinión Cuenta ✨</h1>
+            <p class="text-center text-gray-500 mb-8 max-w-lg mx-auto">
+                Nos encanta saber lo que piensas. ¡Déjanos tu comentario o sugerencia sobre nuestros productos y servicio!
+            </p>
+
+            <!-- 📝 Formulario -->
+            <form id="formRecomendacion" action="{{ url_for('recomendaciones') }}" method="POST"
+                class="flex flex-col gap-5 p-6 bg-amber-50 rounded-xl border border-amber-200 shadow-inner">
+                <label for="mensaje" class="font-semibold text-lg text-gray-700">Tu Mensaje:</label>
+                <textarea name="mensaje" id="mensaje" rows="5" required
+                    placeholder="Ej: 'La aguja de cerdo estaba espectacular, muy tierna y jugosa. Definitivamente volveré a pedir.'"
+                    class="border border-gray-300 rounded-lg p-4 text-gray-800 focus:ring-4 focus:ring-amber-400 focus:border-amber-400 outline-none transition duration-200 resize-y min-h-[100px]"
+                    aria-label="Escribe tu recomendación aquí"></textarea>
+
+                <button type="submit"
+                    class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-6 rounded-xl transition duration-300 ease-in-out shadow-md hover:shadow-lg transform hover:scale-[1.01] flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-9 6h.01M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    Enviar Comentario
+                </button>
+            </form>
+
+            <!-- 🔔 Mensaje de confirmación (oculto por defecto) -->
+            <div id="alertaExito"
+                class="hidden mt-6 bg-green-100 text-green-800 px-4 py-3 rounded-lg text-center font-semibold border border-green-300 shadow-sm">
+                ✅ ¡Gracias por tu recomendación! Se ha guardado correctamente.
+            </div>
+
+            <hr class="my-10 border-gray-200">
+
+            <!-- 🗣️ Lista de recomendaciones -->
+            <h2 class="text-3xl font-bold text-gray-700 mb-8 text-center">Opiniones Recientes de Nuestros Clientes</h2>
+            <div id="listaRecomendaciones" class="space-y-6">
+                {% if recomendaciones %}
+                    {% for nombre, apellido, mensaje, fecha in recomendaciones %}
+                        <div class="recomendacion-card bg-white rounded-xl p-6 border border-gray-200 shadow-lg">
+                            <p class="text-gray-800 text-lg font-medium mb-3 leading-relaxed">{{ mensaje }}</p>
+                            <div class="flex justify-between items-center pt-3 border-t border-gray-100 mt-4">
+                                <p class="text-md font-semibold text-amber-700 flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z">
+                                        </path>
+                                    </svg>
+                                    {{ nombre }} {{ apellido }}
+                                </p>
+                                <p class="text-sm text-gray-500">{{ fecha }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-center text-gray-500 italic py-8">
+                        Aún no hay recomendaciones. ¡Sé el primero en dejar una!
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+
+    <!-- ✅ JS separado -->
+    <script src="{{ url_for('static', filename='js/recomendaciones.js') }}"></script>
+</body>
+</html>

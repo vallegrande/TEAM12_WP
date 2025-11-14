@@ -1,0 +1,39 @@
+/* Efecto hover para tarjetas de recomendación */
+.recomendacion-card {
+    transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out;
+    cursor: pointer;
+}
+
+.recomendacion-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+    border-color: #fbbf24;
+}
+
+/* Suavidad de desplazamiento */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Enfocar el textarea */
+textarea:focus {
+    outline: none !important;
+    border-color: #fbbf24;
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.5);
+}
+
+/* Animación de alerta de éxito */
+#alertaExito {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

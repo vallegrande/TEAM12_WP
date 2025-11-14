@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Carne de Cerdo - Carnicería Pochito{% endblock %}
+{% block title %}Combustible y Encendido - Carnicería Pochito{% endblock %}
 
 {% block content %}
 <section class="bg-slate-600 text-white py-16 text-center shadow-lg">
@@ -10,15 +10,15 @@
 <section class="py-12 px-4 sm:px-6 lg:px-8 bg-gray-100">
     <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-        <!-- Producto: Chuletas -->
+        <!-- Producto 1 -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/encendido1.jpg') }}" alt="Chuletas" class="w-full h-56 object-cover">
+            <img src="{{ url_for('static', filename='image/encendido1.jpg') }}" alt="Gel de encendido" class="w-full h-56 object-cover">
             <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Gel de encendido</h3>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Gel de Encendido para Parrillas</h3>
                 <p class="text-2xl font-extrabold text-pink-600 mb-2">S/. 9.50</p>
-                <p class="text-sm text-gray-600 mb-4"> no desprende olores, como tampoco lo hace el líquido.</p>
-                <button data-id="Gel de encendido"
-                        data-nombre="Gel de encendido"
+                <p class="text-sm text-gray-600 mb-4">Gel de encendido sin olores, ideal para barbacoas y parrillas. No deja residuos y garantiza un encendido rápido y seguro.</p>
+                <button data-id="Gel de Encendido para Parrillas"
+                        data-nombre="Gel de Encendido para Parrillas"
                         data-precio="9.50"
                         data-imagen="{{ url_for('static', filename='image/encendido1.jpg') }}"
                         class="agregar-carrito bg-pink-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-pink-700 transition duration-300 transform hover:scale-105">
@@ -27,17 +27,15 @@
             </div>
         </div>
 
-        <!-- Producto: Costillar -->
+        <!-- Producto 2 -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/encendido2.jpg') }}" alt="Costillar" class="w-full h-56 object-cover">
+            <img src="{{ url_for('static', filename='image/encendido2.jpg') }}" alt="Cubos de encendido" class="w-full h-56 object-cover">
             <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">STARWAX - Cubos para encender Fuego - hasta 10 min de combustión - Encendido rápido - No altera el Sabor de los Alimentos - PEFC - x32 Cubos</h3>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Cubos para Encender Fuego STARWAX (x32)</h3>
                 <p class="text-2xl font-extrabold text-pink-600 mb-2">S/. 14.00</p>
-                <p class="text-sm text-gray-600 mb-4"> los cubos de encendido PEFC son ideales para encender rápidamente un fuego con la máxima seguridad para una barbacoa o una chimenea
-COMBUSTIÓN LARGA: los cubos garantizan una combustión larga, hasta 10 minutos. Son inodoros y no alteran el sabor de los alimentos
-Composición natural a base de una mezcla de serrín de madera y aceite, cumplen con la norma de seguridad NF/EN 1860-3</p>
-                <button data-id="STARWAX - Cubos para encender Fuego - hasta 10 min de combustión - Encendido rápido - No altera el Sabor de los Alimentos - PEFC - x32 Cubos"
-                        data-nombre="STARWAX - Cubos para encender Fuego - hasta 10 min de combustión - Encendido rápido - No altera el Sabor de los Alimentos - PEFC - x32 Cubos"
+                <p class="text-sm text-gray-600 mb-4">Cubos de encendido ecológicos, con hasta 10 minutos de combustión. Encendido rápido y sin alterar el sabor de los alimentos.</p>
+                <button data-id="Cubos para Encender Fuego STARWAX (x32)"
+                        data-nombre="Cubos para Encender Fuego STARWAX (x32)"
                         data-precio="14.00"
                         data-imagen="{{ url_for('static', filename='image/encendido2.jpg') }}"
                         class="agregar-carrito bg-pink-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-pink-700 transition duration-300 transform hover:scale-105">
@@ -46,30 +44,32 @@ Composición natural a base de una mezcla de serrín de madera y aceite, cumplen
             </div>
         </div>
 
-        <!-- Producto: Panceta -->
+        <!-- Producto 3 -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/encendido3.jpg') }}" alt="Panceta" class="w-full h-56 object-cover">
+            <img src="{{ url_for('static', filename='image/encendido3.jpg') }}" alt="Combustible gel Okfuego" class="w-full h-56 object-cover">
             <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Combustible gel para encendido Okfuego</h3>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Combustible Gel para Encendido Okfuego</h3>
                 <p class="text-2xl font-extrabold text-pink-600 mb-2">S/. 18.00</p>
-                <p class="text-sm text-gray-600 mb-4">Combustible gel de Okfuego que se usa para encender rápiday limpiamente barbacoas, chimeneas, "fondues"… Su formato en gel evita el efecto salpicadura, por lo que el encendido es más seguro.</p>
-                <button data-id="Combustible gel para encendido Okfuego"
-                        data-nombre="Combustible gel para encendido Okfuego"
+                <p class="text-sm text-gray-600 mb-4">Combustible en gel que ofrece un encendido rápido y seguro para barbacoas, chimeneas y fondues. Sin salpicaduras ni humo.</p>
+                <button data-id="Combustible Gel para Encendido Okfuego"
+                        data-nombre="Combustible Gel para Encendido Okfuego"
                         data-precio="18.00"
-                        data-imagen="{{ url_for('static', filename='image/encendido3') }}"
+                        data-imagen="{{ url_for('static', filename='image/encendido3.jpg') }}"
                         class="agregar-carrito bg-pink-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-pink-700 transition duration-300 transform hover:scale-105">
                     Agregar al carrito
                 </button>
             </div>
         </div>
+
+        <!-- Producto 4 -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/encendido4.jpg') }}" alt="Panceta" class="w-full h-56 object-cover">
+            <img src="{{ url_for('static', filename='image/encendido4.jpg') }}" alt="Trozos de tocón" class="w-full h-56 object-cover">
             <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Trozos de tocón</h3>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Trozos de Tocón de Arce Azucarado</h3>
                 <p class="text-2xl font-extrabold text-pink-600 mb-2">S/. 31.00</p>
-                <p class="text-sm text-gray-600 mb-4">Carbón vegetal de arce azucarado para asar - Briquetas de carbón de madera dura de iluminación rápida y combustión en caliente - Carbón natural para ahumador - Bolsa pequeña </p>
-                <button data-id="Trozos de tocón"
-                        data-nombre="Trozos de tocón"
+                <p class="text-sm text-gray-600 mb-4">Carbón vegetal natural de arce azucarado, con encendido rápido y alta duración. Ideal para parrillas y ahumadores.</p>
+                <button data-id="Trozos de Tocón de Arce Azucarado"
+                        data-nombre="Trozos de Tocón de Arce Azucarado"
                         data-precio="31.00"
                         data-imagen="{{ url_for('static', filename='image/encendido4.jpg') }}"
                         class="agregar-carrito bg-pink-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-pink-700 transition duration-300 transform hover:scale-105">
@@ -77,14 +77,16 @@ Composición natural a base de una mezcla de serrín de madera y aceite, cumplen
                 </button>
             </div>
         </div>
+
+        <!-- Producto 5 -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/encendido5.jpg') }}" alt="Panceta" class="w-full h-56 object-cover">
+            <img src="{{ url_for('static', filename='image/encendido5.jpg') }}" alt="Briquetas Braza" class="w-full h-56 object-cover">
             <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Briquetas de 3Kg - Braza</h3>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Briquetas de Carbón Vegetal Braza 3Kg</h3>
                 <p class="text-2xl font-extrabold text-pink-600 mb-2">S/. 22.50</p>
-                <p class="text-sm text-gray-600 mb-4">Briquetas de carbón vegetal</p>
-                <button data-id="Briquetas de 3Kg - Braza"
-                        data-nombre="Briquetas de 3Kg - Braza"
+                <p class="text-sm text-gray-600 mb-4">Briquetas de carbón vegetal de alta densidad, perfectas para una combustión prolongada y estable en tus parrillas.</p>
+                <button data-id="Briquetas de Carbón Vegetal Braza 3Kg"
+                        data-nombre="Briquetas de Carbón Vegetal Braza 3Kg"
                         data-precio="22.50"
                         data-imagen="{{ url_for('static', filename='image/encendido5.jpg') }}"
                         class="agregar-carrito bg-pink-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-pink-700 transition duration-300 transform hover:scale-105">

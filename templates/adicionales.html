@@ -1,22 +1,22 @@
 {% extends "base.html" %}
 
-{% block title %}Carne de Cerdo - Carnicería Pochito{% endblock %}
+{% block title %}Equipos Adicionales - Carnicería Pochito{% endblock %}
 
 {% block content %}
 <section class="bg-purple-400 text-white py-16 text-center shadow-lg">
-    <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight">Equipos adicionales</h1>
+    <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight">Equipos Adicionales</h1>
 </section>
 
 <section class="py-12 px-4 sm:px-6 lg:px-8 bg-gray-100">
     <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-        <!-- Producto: Chuletas -->
+        <!-- Producto 1 -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/adicional1.jpg') }}" alt="Chuletas" class="w-full h-56 object-cover">
+            <img src="{{ url_for('static', filename='image/adicional1.jpg') }}" alt="Aderezo para aves" class="w-full h-56 object-cover">
             <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Aderezo Para Aves - Lopesa - LOPESA INDUSTRIAL S.A.</h3>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Aderezo para Aves - Lopesa Industrial S.A.</h3>
                 <p class="text-2xl font-extrabold text-pink-600 mb-2">S/. 25.50</p>
-                <p class="text-sm text-gray-600 mb-4">Aderezo para aves considerado como producto de alta calidad</p>
+                <p class="text-sm text-gray-600 mb-4">Aderezo premium para aves, con ingredientes seleccionados para realzar el sabor.</p>
                 <button data-id="Aderezo Para Aves - Lopesa - LOPESA INDUSTRIAL S.A."
                         data-nombre="Aderezo Para Aves - Lopesa - LOPESA INDUSTRIAL S.A."
                         data-precio="25.50"
@@ -27,13 +27,13 @@
             </div>
         </div>
 
-        <!-- Producto: Costillar -->
+        <!-- Producto 2 -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/adicional2.jpg') }}" alt="Costillar" class="w-full h-56 object-cover">
+            <img src="{{ url_for('static', filename='image/adicional2.jpg') }}" alt="Salsa Gourmet" class="w-full h-56 object-cover">
             <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Salsa Gourmet</h3>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Salsa Gourmet Premium</h3>
                 <p class="text-2xl font-extrabold text-pink-600 mb-2">S/. 33.00</p>
-                <p class="text-sm text-gray-600 mb-4">Exquisita salsa a base de soya con especias: pimienta dulce, apio, ajo, pimienta negra, canela, jengibre, clavo de olor, páprika, cebolla. Adicionada, tamarindo y vino para potenciar el sabor de tus comidas.</p>
+                <p class="text-sm text-gray-600 mb-4">Salsa a base de soya con especias naturales, vino y tamarindo. Perfecta para carnes, pollos y parrillas.</p>
                 <button data-id="Salsa Gourmet"
                         data-nombre="Salsa Gourmet"
                         data-precio="33.00"
@@ -44,13 +44,13 @@
             </div>
         </div>
 
-        <!-- Producto: Panceta -->
+        <!-- Producto 3 -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/adicional4.jpg') }}" alt="Panceta" class="w-full h-56 object-cover">
+            <img src="{{ url_for('static', filename='image/adicional4.jpg') }}" alt="Aderezo para Pollo a la Brasa" class="w-full h-56 object-cover">
             <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Aderezo para Pollo a la Brasa 2 BANDERAS Doypack 300g</h3>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Aderezo para Pollo a la Brasa 2 Banderas Doypack 300g</h3>
                 <p class="text-2xl font-extrabold text-pink-600 mb-2">S/. 28.00</p>
-                <p class="text-sm text-gray-600 mb-4">Práctico y sencillo de incorporar a los alimentos</p>
+                <p class="text-sm text-gray-600 mb-4">Aderezo práctico y listo para usar. Ideal para parrillas o preparaciones caseras.</p>
                 <button data-id="Aderezo para Pollo a la Brasa 2 BANDERAS Doypack 300g"
                         data-nombre="Aderezo para Pollo a la Brasa 2 BANDERAS Doypack 300g"
                         data-precio="28.00"
@@ -60,12 +60,14 @@
                 </button>
             </div>
         </div>
-           <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/adicional3.jpg') }}" alt="Panceta" class="w-full h-56 object-cover">
+
+        <!-- Producto 4 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
+            <img src="{{ url_for('static', filename='image/adicional3.jpg') }}" alt="Aderezo tipo oriental" class="w-full h-56 object-cover">
             <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Aderezo tipo Oriental 2 BANDERAS con Soya y Especias Bolsa 85g</h3>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Aderezo Tipo Oriental 2 Banderas con Soya y Especias 85g</h3>
                 <p class="text-2xl font-extrabold text-pink-600 mb-2">S/. 8.00</p>
-                <p class="text-sm text-gray-600 mb-4">Sazón incomparable</p>
+                <p class="text-sm text-gray-600 mb-4">Sabor oriental auténtico, perfecto para resaltar el gusto de tus platos.</p>
                 <button data-id="Aderezo tipo Oriental 2 BANDERAS con Soya y Especias Bolsa 85g"
                         data-nombre="Aderezo tipo Oriental 2 BANDERAS con Soya y Especias Bolsa 85g"
                         data-precio="8.00"

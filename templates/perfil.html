@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de {{ user['nombre'] }} | Carnicería Pochito</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/perfil.css') }}">
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+
+    <!-- Navbar -->
+    <header class="bg-red-700 text-white shadow-md">
+        <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
+            <h1 class="text-2xl font-bold">Carnicería Pochito</h1>
+            <nav class="space-x-4">
+                <a href="{{ url_for('index') }}" class="hover:underline">Inicio</a>
+                <a href="#" id="editarBtn" class="hover:underline">Editar Perfil</a>
+                <a href="{{ url_for('logout') }}" class="hover:underline">Cerrar sesión</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenedor principal -->
+    <main class="max-w-4xl mx-auto mt-10 bg-white rounded-2xl shadow-lg p-8">
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+
+            <!-- Imagen de perfil -->
+            <div class="flex-shrink-0">
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" 
+                     alt="Foto de perfil" 
+                     class="w-32 h-32 rounded-full border-4 border-red-600 shadow">
+            </div>
+
+            <!-- Datos del usuario -->
+            <div class="flex-1">
+                <h2 class="text-2xl font-semibold text-red-700 mb-2">Hola, {{ user['nombre'] }}</h2>
+                <p class="text-gray-700"><strong>Correo:</strong> {{ user['correo'] }}</p>
+                <p class="text-gray-700"><strong>ID de Usuario:</strong> {{ user['id'] }}</p>
+
+                <div class="mt-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Tus últimos pedidos</h3>
+                    <div class="bg-gray-50 p-4 rounded-lg border">
+                        <p class="text-gray-600 italic">No hay pedidos recientes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para editar perfil -->
+    <div id="modalEditar" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white rounded-xl p-6 shadow-lg w-96">
+            <h3 class="text-xl font-semibold text-red-700 mb-4">Editar perfil</h3>
+            <form id="formEditar" method="post">
+                <label class="block mb-2 text-sm font-medium text-gray-700">Nombre</label>
+                <input type="text" name="nombre" value="{{ user['nombre'] }}" class="w-full border rounded-lg p-2 mb-3 focus:ring-2 focus:ring-red-500">
+
+                <label class="block mb-2 text-sm font-medium text-gray-700">Correo</label>
+                <input type="email" name="correo" value="{{ user['correo'] }}" class="w-full border rounded-lg p-2 mb-3 focus:ring-2 focus:ring-red-500">
+
+                <div class="flex justify-end mt-4 space-x-3">
+                    <button type="button" id="cancelarBtn" class="bg-gray-300 px-4 py-2 rounded-lg hover:bg-gray-400">Cancelar</button>
+                    <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/perfil.js') }}"></script>
+</body>
+</html>

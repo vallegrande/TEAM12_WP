@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Carne de Cerdo - Carnicería Pochito{% endblock %}
+{% block title %}Parrillas y Soportes - Carnicería Pochito{% endblock %}
 
 {% block content %}
 <section class="bg-cyan-500 text-white py-16 text-center shadow-lg">
@@ -10,13 +10,13 @@
 <section class="py-12 px-4 sm:px-6 lg:px-8 bg-gray-100">
     <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-        <!-- Producto: Chuletas -->
+        <!-- Producto 1 -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/parrilla1.jpg') }}" alt="Chuletas" class="w-full h-56 object-cover">
+            <img src="{{ url_for('static', filename='image/parrilla1.jpg') }}" alt="Parrilla Cilíndrica" class="w-full h-56 object-cover">
             <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Parrilla Cilindrica a Carbon Mr Grill con Tapa Negro + Soporte</h3>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Parrilla Cilíndrica a Carbón Mr Grill con Tapa + Soporte</h3>
                 <p class="text-2xl font-extrabold text-pink-600 mb-2">S/. 129.50</p>
-                <p class="text-sm text-gray-600 mb-4">Es muy fácil y práctica de usar</p>
+                <p class="text-sm text-gray-600 mb-4">Diseño compacto y práctico, ideal para reuniones familiares o con amigos.</p>
                 <button data-id="Parrilla Cilindrica a Carbon Mr Grill con Tapa Negro + Soporte"
                         data-nombre="Parrilla Cilindrica a Carbon Mr Grill con Tapa Negro + Soporte"
                         data-precio="129.50"
@@ -27,15 +27,15 @@
             </div>
         </div>
 
-        <!-- Producto: Costillar -->
+        <!-- Producto 2 -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/parrilla2.jpg') }}" alt="Costillar" class="w-full h-56 object-cover">
+            <img src="{{ url_for('static', filename='image/parrilla2.jpg') }}" alt="Parrilla al Carbón" class="w-full h-56 object-cover">
             <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Parrilla al Carbón Cilíndrica con Tapa + Parrilla + Soporte 77x100x32cm</h3>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Parrilla al Carbón Cilíndrica con Tapa + Parrilla + Soporte (77x100x32cm)</h3>
                 <p class="text-2xl font-extrabold text-pink-600 mb-2">S/. 150.00</p>
-                <p class="text-sm text-gray-600 mb-4">Área de cocción resistente al calorsuperficie fácil de limpiar. Dos estantes de madera para mayor comodidad al colocar herramientas y alimentos.</p>
-        <button data-id="parrilla_al_carbon_cilindrica_77x100x32cm"
-            data-nombre="Parrilla al Carbón Cilíndrica con Tapa + Parrilla + Soporte 77x100x32cm"
+                <p class="text-sm text-gray-600 mb-4">Superficie resistente al calor y fácil de limpiar, con estantes de madera para mayor comodidad.</p>
+                <button data-id="parrilla_al_carbon_cilindrica_77x100x32cm"
+                        data-nombre="Parrilla al Carbón Cilíndrica con Tapa + Parrilla + Soporte 77x100x32cm"
                         data-precio="150.00"
                         data-imagen="{{ url_for('static', filename='image/parrilla2.jpg') }}"
                         class="agregar-carrito bg-pink-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-pink-700 transition duration-300 transform hover:scale-105">
@@ -44,17 +44,33 @@
             </div>
         </div>
 
-     
-
-         <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/parrilla4.jpg') }}" alt="Panceta" class="w-full h-56 object-cover">
+        <!-- Producto 3 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
+            <img src="{{ url_for('static', filename='image/parrilla3.jpg') }}" alt="Soporte Barbacoa" class="w-full h-56 object-cover">
             <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Soporte barbacoa de obra con parrilla de acero inoxidable</h3>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Soporte Barbacoa de Obra con Parrilla de Acero Inoxidable</h3>
                 <p class="text-2xl font-extrabold text-pink-600 mb-2">S/. 140.00</p>
-                <p class="text-sm text-gray-600 mb-4">Perfecta para un dia de campo</p>
+                <p class="text-sm text-gray-600 mb-4">Ideal para asados al aire libre, resistente y de larga duración.</p>
                 <button data-id="Soporte barbacoa de obra con parrilla de acero inoxidable"
                         data-nombre="Soporte barbacoa de obra con parrilla de acero inoxidable"
                         data-precio="140.00"
+                        data-imagen="{{ url_for('static', filename='image/parrilla3.jpg') }}"
+                        class="agregar-carrito bg-pink-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-pink-700 transition duration-300 transform hover:scale-105">
+                    Agregar al carrito
+                </button>
+            </div>
+        </div>
+
+        <!-- Producto 4 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
+            <img src="{{ url_for('static', filename='image/parrilla4.jpg') }}" alt="Parrilla Inoxidable" class="w-full h-56 object-cover">
+            <div class="p-5 text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">IMEX-71407 Parrilla Barbacoa de Obra Inoxidable</h3>
+                <p class="text-2xl font-extrabold text-pink-600 mb-2">S/. 100.00</p>
+                <p class="text-sm text-gray-600 mb-4">Parrilla resistente con acabado inoxidable, perfecta para instalaciones fijas.</p>
+                <button data-id="imex_71407_parrilla_barbacoa_inox"
+                        data-nombre="IMEX-71407 Parrilla barbacoa para obra parrilla inox"
+                        data-precio="100.00"
                         data-imagen="{{ url_for('static', filename='image/parrilla4.jpg') }}"
                         class="agregar-carrito bg-pink-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-pink-700 transition duration-300 transform hover:scale-105">
                     Agregar al carrito
@@ -62,32 +78,17 @@
             </div>
         </div>
 
-         <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/parrilla5.jpg') }}" alt="Panceta" class="w-full h-56 object-cover">
+        <!-- Producto 5 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
+            <img src="{{ url_for('static', filename='image/parrilla5.jpg') }}" alt="Parrilla a Gas" class="w-full h-56 object-cover">
             <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">IMEX-71407 Parrilla barbacoa para obra parrilla inox</h3>
-                <p class="text-2xl font-extrabold text-pink-600 mb-2">S/. 100.00</p>
-                <p class="text-sm text-gray-600 mb-4">Parrilla barbacoa para obra con parrilla inoxidable.</p>
-        <button data-id="imex_71407_parrilla_barbacoa_inox"
-            data-nombre="IMEX-71407 Parrilla barbacoa para obra parrilla inox"
-                        data-precio="100.00"
-            data-imagen="{{ url_for('static', filename='image/parrilla5.jpg') }}"
-                        class="agregar-carrito bg-pink-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-pink-700 transition duration-300 transform hover:scale-105">
-                    Agregar al carrito
-                </button>
-            </div>
-        </div>
-
-         <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/parrilla6.jpg') }}" alt="Panceta" class="w-full h-56 object-cover">
-            <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">PARRILLA ASADORA A GAS DE SOBREPONER 24"</h3>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Parrilla Asadora a Gas de Sobreponer 24"</h3>
                 <p class="text-2xl font-extrabold text-pink-600 mb-2">S/. 120.00</p>
-                <p class="text-sm text-gray-600 mb-4">Parrilla asadora a gas de sobreponer 24" de frente en acero inoxidable. Cuerpo fabricado totalmente en acero inoxidable cuerpo fabricado totalmente en acero inoxidable calibre 18 tipo 201 y calibre 20 tipo 430, bandeja extraíble recolectora de grasas y líquidos, su diseño permite un fácil acceso para labores de mantenimiento y limpieza, dimensiones: Frente: 0.61 / Fondo 0.756 / Altura 0.28 mts, potencia Total: 60.000 BTU/H, no incluye base.</p>
-        <button data-id="parrilla_asadora_gas_24"
-            data-nombre="PARRILLA ASADORA A GAS DE SOBREPONER 24"
-            data-precio="120.00"
-            data-imagen="{{ url_for('static', filename='image/parrilla6.jpg') }}"
+                <p class="text-sm text-gray-600 mb-4">Fabricada totalmente en acero inoxidable, con bandeja recolectora de grasa y fácil mantenimiento.</p>
+                <button data-id="parrilla_asadora_gas_24"
+                        data-nombre="Parrilla Asadora a Gas de Sobreponer 24"
+                        data-precio="120.00"
+                        data-imagen="{{ url_for('static', filename='image/parrilla5.jpg') }}"
                         class="agregar-carrito bg-pink-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-pink-700 transition duration-300 transform hover:scale-105">
                     Agregar al carrito
                 </button>
