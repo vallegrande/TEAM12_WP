@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     addButtonAnimations();
 });
 
-// Función para verificar si está abierto
+// Función para verificar si el negocio está abierto
 function checkOpenStatus() {
     const statusIndicator = document.getElementById('statusIndicator');
     if (!statusIndicator) return;
@@ -69,7 +69,7 @@ function checkOpenStatus() {
     }
 }
 
-// Animaciones en botones y tarjetas
+// Animaciones en los botones y tarjetas
 function addButtonAnimations() {
     const buttons = document.querySelectorAll('.directions-btn');
     
