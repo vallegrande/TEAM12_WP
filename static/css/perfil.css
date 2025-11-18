@@ -1,20 +1,91 @@
-/* Perfil - Carnicería Pochito */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+/* Modal content */
+.modal-content {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 25px 40px -10px rgba(0, 0, 0, 0.15); 
+    width: 90%;
+    max-width: 500px;
+    animation: slideUp 0.3s ease-out;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+button, a {
+    transition: all 0.2s ease-in-out;
+}
+
+input:focus {
+    transform: translateY(-1px);
+    outline: 2px solid #a5b4fc; 
+    border-radius: 6px;
+}
+
+
+.bg-gray-50.rounded-xl {
+    transition: all 0.2s ease;
+}
+
+.bg-gray-50.rounded-xl:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    header nav {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-  scroll-behavior: smooth;
-}
-
-/* Efecto al pasar el mouse sobre la tarjeta */
-main:hover {
-  transition: transform 0.3s ease;
-  transform: translateY(-2px);
-}
-
-/* Animación para el modal */
-#modalEditar {
-  animation: aparecer 0.3s ease;
-}
-
-@keyframes aparecer {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
