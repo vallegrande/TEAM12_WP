@@ -27,6 +27,30 @@ body {
     background-color: #f3f4f6;
 }
 
+/* Sidebar carrito: en móvil ocupe toda la pantalla para mejor UX */
+@media (max-width: 640px) {
+    #sidebar-carrito {
+        width: 100% !important;
+        right: 0;
+    }
+}
+
+/* Imágenes fluidas para responsividad */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Contenedor reutilizable responsive */
+.container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
 footer {
     font-size: 0.9rem;
     text-align: center;
