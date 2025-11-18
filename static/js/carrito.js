@@ -20,18 +20,17 @@ class Carrito {
             if (!boton) return;
             e.preventDefault();
             console.debug('[carrito] boton agregar clic:', boton.dataset);
-            // Normalizar y limpiar valores por si el HTML tiene comillas extra o espacios
+            
             const rawId = boton.dataset.id || '';
             const rawNombre = boton.dataset.nombre || '';
             const rawPrecio = boton.dataset.precio || '';
             const rawImagen = boton.dataset.imagen || '';
 
-            // quitar comillas extras y caracteres raros
             const id = String(rawId).replace(/"+/g, '').trim();
             const nombre = String(rawNombre).replace(/"+/g, '').trim();
             const precio = parseFloat(String(rawPrecio).replace(/[^0-9,.-]/g, '').replace(',', '.'));
             const imagen = String(rawImagen).trim();
-            // cantidad puede venir por data-cantidad o por un input .producto-cantidad dentro del mismo card
+            
             let cantidad = 1;
             if (boton.dataset.cantidad) {
                 cantidad = parseInt(boton.dataset.cantidad);
@@ -42,12 +41,13 @@ class Carrito {
                     if (inputQty) cantidad = parseInt(inputQty.value) || 1;
                 }
             }
+
             if (!id || !nombre || isNaN(precio) || isNaN(cantidad)) {
-                console.warn('[carrito] datos inválidos al intentar agregar:', {id, nombre, precio, cantidad, imagen, dataset: boton.dataset});
+                console.warn('[carrito] datos inválidos al intentar agregar:', { id, nombre, precio, cantidad, imagen });
                 return;
             }
 
-            console.info('[carrito] agregando producto:', {id, nombre, precio, cantidad});
+            console.info('[carrito] agregando producto:', { id, nombre, precio, cantidad });
             this.agregarProducto(id, nombre, precio, imagen, cantidad);
         });
     }
@@ -56,6 +56,10 @@ class Carrito {
         const sidebar = document.getElementById("sidebar-carrito");
         if (sidebar) {
             sidebar.classList.toggle("translate-x-full");
+
+            // ⭐ CAMBIO LEVE AÑADIDO ⭐
+            console.log("[carrito] Sidebar toggled");
+
             this.actualizarCarritoLateral();
         }
     }
@@ -77,11 +81,11 @@ class Carrito {
             this.items.push(producto);
         }
 
-    this.guardarCarrito();
-    this.actualizarCarritoLateral();
+        this.guardarCarrito();
+        this.actualizarCarritoLateral();
         this.mostrarMensaje(`¡${nombre} agregado al carrito!`);
         console.debug('[carrito] items ahora:', this.items);
-        // Abrir sidebar automáticamente si está cerrado para que el usuario vea el cambio
+
         try {
             const sidebar = document.getElementById('sidebar-carrito');
             if (sidebar && sidebar.classList.contains('translate-x-full')) {
@@ -93,7 +97,7 @@ class Carrito {
     }
 
     actualizarCantidad(id, nuevaCantidad) {
-        const producto = this.items.find(item => (item.id === id) || (item.nombre === id));
+        const producto = this.items.find(item => item.id === id || item.nombre === id);
         if (producto) {
             producto.cantidad = parseInt(nuevaCantidad);
             if (producto.cantidad <= 0) {
@@ -106,15 +110,14 @@ class Carrito {
     }
 
     eliminarProducto(id) {
-        // Acepta tanto id (identificador) como nombre para compatibilidad con items anteriores
-        this.items = this.items.filter(item => { 
-            if (!item) return false;
+        this.items = this.items.filter(item => {
             const itemId = item.id || '';
             const itemNombre = item.nombre || '';
-            return (itemId !== id) && (itemNombre !== id);
+            return itemId !== id && itemNombre !== id;
         });
-    this.guardarCarrito();
-    this.actualizarCarritoLateral();
+
+        this.guardarCarrito();
+        this.actualizarCarritoLateral();
     }
 
     guardarCarrito() {
@@ -134,7 +137,7 @@ class Carrito {
         const lista = document.getElementById("carrito-lista");
         if (!lista) return;
 
-        if (!this.items || this.items.length === 0) {
+        if (!this.items.length) {
             lista.innerHTML = '<p class="text-gray-500 p-4">El carrito está vacío.</p>';
             return;
         }
@@ -152,9 +155,9 @@ class Carrito {
                 <div class="flex-grow">
                     <h3 class="font-medium">${item.nombre}</h3>
                     <div class="flex items-center gap-2">
-                        <input type="number" 
-                               value="${item.cantidad}" 
-                               min="1" 
+                        <input type="number"
+                               value="${item.cantidad}"
+                               min="1"
                                class="w-16 text-center border rounded"
                                onchange="carrito.actualizarCantidad('${item.id}', this.value)">
                         <span class="text-gray-600">x S/. ${item.precio.toFixed(2)}</span>
@@ -164,7 +167,8 @@ class Carrito {
                 <button onclick="carrito.eliminarProducto('${item.id}')"
                         class="text-red-500 hover:text-red-700">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
             </div>`;
@@ -194,10 +198,10 @@ class Carrito {
     }
 }
 
-// Inicializar carrito y exponerlo en window para que otros scripts puedan acceder
+// Inicializar carrito
 window.carrito = new Carrito();
 
-// Función para toggle del sidebar (debe estar fuera de la clase para ser accesible globalmente)
+// Función global para abrir/cerrar sidebar
 function toggleCarrito() {
     if (window.carrito) window.carrito.toggleCarrito();
 }
