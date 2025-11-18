@@ -1,5 +1,9 @@
 // buscador.js - Buscador tipo "mega" para cortes y asados
 document.addEventListener('DOMContentLoaded', () => {
+
+  // *** CAMBIO LEVE AÑADIDO ***
+  console.log("Buscador listo y escuchando entradas…");
+
   const input = document.getElementById('global-search');
   const clearBtn = document.getElementById('search-clear');
   const chips = document.getElementById('search-chips');
@@ -41,13 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
       item.addEventListener('click', () => {
-        // Lógica: intentar localizar elemento en el grid principal y hacer scroll
         const grid = document.getElementById('products-grid');
         if (grid) {
-          const el = Array.from(grid.querySelectorAll('.product-card')).find(c => c.querySelector('h3').textContent.trim().toLowerCase() === p.nombre.toLowerCase());
+          const el = Array.from(grid.querySelectorAll('.product-card'))
+            .find(c => c.querySelector('h3').textContent.trim().toLowerCase() === p.nombre.toLowerCase());
+
           if (el) {
             el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            // resaltar temporalmente
             el.classList.add('ring-4', 'ring-red-200');
             setTimeout(()=> el.classList.remove('ring-4','ring-red-200'), 2000);
           }
@@ -65,7 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     const res = SITE_PRODUCTS.filter(p => {
-      return p.nombre.toLowerCase().includes(term) || (p.tipo && p.tipo.toLowerCase().includes(term));
+      return p.nombre.toLowerCase().includes(term) || 
+        (p.tipo && p.tipo.toLowerCase().includes(term));
     });
     renderResults(res);
   }
@@ -109,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
     mega.classList.add('show');
   });
 
-  // también manejar clicks en most-searched y categories dentro mega
   document.getElementById('most-searched').addEventListener('click', (ev) => {
     const c = ev.target.closest('.chip');
     if (!c) return;
