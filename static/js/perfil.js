@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const nombre = formData.get('nombre');
             const correo = formData.get('correo');
 
-            // Validación básica
+            // Validacióones básica 
             if (!nombre || !correo) {
                 mostrarNotificacion('Por favor completa todos los campos', 'error');
                 return;
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Función auxiliar para validar email
+    // Función auxiliar para validar email del usuario
     function validarEmail(email) {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regex.test(email);
