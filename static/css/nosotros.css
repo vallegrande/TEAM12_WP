@@ -2,7 +2,7 @@
 .hero-section {
     position: relative;
     height: 400px;
-    background: linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%);
+    background: linear-gradient(135deg, #6d0c0c 0%, #420707 100%);
     overflow: hidden;
 }
 
@@ -28,7 +28,7 @@
 .hero-title {
     font-size: 3.5rem;
     font-weight: 800;
-    color: white;
+    color: rgb(228, 188, 188);
     margin-bottom: 1rem;
     text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
     animation: fadeInUp 0.8s ease-out;
@@ -36,7 +36,7 @@
 
 .hero-subtitle {
     font-size: 1.25rem;
-    color: rgba(255, 255, 255, 0.95);
+    color: rgba(73, 63, 63, 0.95);
     max-width: 600px;
     animation: fadeInUp 1s ease-out;
 }
