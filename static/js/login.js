@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         mostrarRegistro();
     }
 
-    // Validación en tiempo real del DNI
+    // Validación en tiempo real del DNI del usuario
     const dniInput = document.getElementById('dni');
     if (dniInput) {
         dniInput.addEventListener('input', function(e) {
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Mostrar/ocultar contraseña
+    // Mostrar/ocultar contraseña del usuario
     function agregarTogglePassword() {
         const passwordFields = document.querySelectorAll('input[type="password"]');
         
