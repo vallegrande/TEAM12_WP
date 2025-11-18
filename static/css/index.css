@@ -1,10 +1,4 @@
-.hero {
-  background: linear-gradient(to right, #991b1b, #ef4444);
-  color: white;
-  padding: 4rem 0;
-  text-align: center;
-}
-
+/* ---------------------- PRODUCT CARDS ---------------------- */
 .product-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -14,7 +8,30 @@
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-/* Estilos del carrusel */
+.product-card .producto-cantidad {
+  width: 3.5rem;
+}
+
+.product-card button.agregar-carrito {
+  font-weight: 600;
+}
+
+
+/* ---------------------- SIDEBAR ---------------------- */
+aside input[type="text"] { 
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05); 
+}
+
+aside button { 
+  transition: transform .12s ease; 
+}
+
+aside button:hover { 
+  transform: translateY(-2px); 
+}
+
+
+/* ---------------------- CARRUSEL ---------------------- */
 .carousel-track {
   display: flex;
   transition: transform 0.6s ease-in-out;
@@ -30,28 +47,14 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Animación suave y profesional */
 #carousel {
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-/* Sidebar styles */
-.product-card .producto-cantidad {
-  width: 3.5rem;
-}
 
-.product-card button.agregar-carrito {
-  font-weight: 600;
-}
-
-/* Make the sidebar and product grid visually closer to the example */
-aside input[type="text"] { box-shadow: inset 0 1px 2px rgba(0,0,0,0.05); }
-aside button { transition: transform .12s ease; }
-aside button:hover { transform: translateY(-2px); }
-
-/* ------------------- Mega Search / Buscador ------------------- */
+/* ---------------------- BUSCADOR MEGA ---------------------- */
 .mega-search-wrap {
   width: 90%;
   max-width: 1100px;
@@ -77,9 +80,8 @@ aside button:hover { transform: translateY(-2px); }
   border: none;
   font-size: 1.05rem;
   padding: 8px 12px;
-  position: relative;
   z-index: 70;
-  pointer-events: auto; /* 🔥 permite escribir sin bloqueos */
+  pointer-events: auto;
 }
 
 .search-chips { 
@@ -153,9 +155,90 @@ aside button:hover { transform: translateY(-2px); }
   font-weight:700; 
 }
 
-/* 🔥 Evita que la imagen de fondo bloquee clics o escritura */
+
+/* ---------------------- HERO CLEAN ---------------------- */
 section.relative img {
   pointer-events: none;
+}
+
+.hero-section { 
+  position:relative; 
+}
+
+.hero-img { 
+  display:block; 
+  width:100%; 
+  height:360px; 
+  object-fit:cover; 
+  border-radius:12px; 
+}
+
+.hero-overlay { 
+  position:absolute; 
+  inset:0; 
+  border-radius:12px; 
+  pointer-events:none; 
+  background: linear-gradient(180deg, rgba(0,0,0,0.38), rgba(0,0,0,0.48)); 
+}
+
+.hero-content { 
+  position:absolute; 
+  left:50%; 
+  top:50%; 
+  transform:translate(-50%,-50%); 
+  z-index:40; 
+  max-width:1000px; 
+  width:100%; 
+  padding:0 1rem;
+  background: transparent !important;  /* SIN FONDO */
+}
+
+.hero-title { 
+  color:#ef4444; 
+  font-size:3.6rem; 
+  margin:0; 
+  letter-spacing:1px; 
+  text-shadow:0 10px 30px rgba(0,0,0,0.5); 
+  font-weight:900; 
+}
+
+.hero-sub { 
+  color:rgba(255,255,255,0.95); 
+  margin-top:.6rem; 
+  font-size:1.125rem; 
+}
+
+.hero-eyebrow { 
+  color:rgba(255,255,255,0.85); 
+  display:block; 
+  font-weight:700; 
+  margin-bottom:.6rem; 
+}
+
+
+/* ------ CTA ----- */
+.hero-cta { 
+  display:flex; 
+  justify-content:center; 
+}
+
+.hero-cta .btn { 
+  padding:.7rem 1.4rem; 
+  border-radius:999px; 
+  font-weight:800; 
+  font-size:1rem; 
+  display:inline-flex; 
+  width:auto; 
+  max-width:360px; 
+  min-width:160px; 
+}
+
+
+/* ---------------------- RESPONSIVE ---------------------- */
+@media (max-width: 640px){
+  .hero-img { height:220px; }
+  .hero-content { top:46%; }
+  .hero-title { font-size:2rem; }
 }
 
 @media (max-width: 900px) {

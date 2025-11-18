@@ -1,0 +1,59 @@
+/* ======== RECOMENDACIONES ======== */
+
+#formRecomendacion {
+    background: #FFF8E1 !important;       /* amarillo suave */
+    border: 2px solid #FFC107 !important; /* amarillo vibrante */
+}
+
+#formRecomendacion textarea {
+    background: white;
+    border: 1px solid #D6D6D6;
+}
+
+#formRecomendacion button {
+    background: #FFB300 !important; /* amarillo profesional */
+}
+
+#formRecomendacion button:hover {
+    background: #FFA000 !important;
+}
+
+/* ======== RECLAMOS ======== */
+
+#formReclamos {
+    background: #FFFFFF !important;
+    border: 2px solid #E0E0E0 !important;
+}
+
+#formReclamos textarea {
+    border: 1px solid #C5C5C5 !important;
+}
+
+#formReclamos button {
+    background: #D32F2F !important; /* rojo profesional */
+}
+
+#formReclamos button:hover {
+    background: #B71C1C !important;
+}
+
+/* ======== BOTONES SUPERIORES ======== */
+
+#btnRecomendaciones {
+    background: #FFB300 !important;
+    color: white !important;
+}
+
+#btnRecomendaciones:hover {
+    background: #FFA000 !important;
+}
+
+#btnReclamos {
+    background: #E0E0E0 !important;
+    color: #333 !important;
+}
+
+#btnReclamos.activo {
+    background: #D32F2F !important;
+    color: white !important;
+}

@@ -6,7 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (boton.dataset._fallbackBound) return;
       boton.dataset._fallbackBound = '1';
       boton.addEventListener('click', (e) => {
+        // Evitar comportamiento por defecto y detener la propagación
+        // para que el listener delegado en `document` no procese
+        // el mismo click duplicadamente.
         e.preventDefault();
+        e.stopPropagation();
         const rawId = boton.dataset.id || '';
         const rawNombre = boton.dataset.nombre || '';
         const rawPrecio = boton.dataset.precio || '';

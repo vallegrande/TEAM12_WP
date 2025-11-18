@@ -47,11 +47,11 @@ class CarritoDetallado {
                 </div>
 
                 <div class="flex flex-col items-end gap-2">
-                    <input type="number" 
-                           value="${item.cantidad}" 
-                           min="1" 
-                           class="w-20 text-center border rounded-lg p-1"
-                           onchange="carritoDetallado.actualizarCantidad('${item.id}', this.value)">
+                          <input type="number" 
+                              value="${item.cantidad}" 
+                              min="1" 
+                              class="w-20 text-center border rounded-lg p-1"
+                              onchange="carrito.actualizarCantidadDebounced('${item.id}', this.value)">
                            
                     <button onclick="carritoDetallado.eliminarProducto('${item.id}')"
                             class="text-red-500 hover:text-red-700">
@@ -69,8 +69,9 @@ class CarritoDetallado {
     }
 
     actualizarCantidad(id, nuevaCantidad) {
-        this.carritoBase.actualizarCantidad(id, nuevaCantidad);
-        this.actualizarCarritoDetallado();
+        // Llamamos a la función debounced del carrito base, y actualizamos UI tras un pequeño delay
+        this.carritoBase.actualizarCantidadDebounced(id, nuevaCantidad);
+        setTimeout(()=> this.actualizarCarritoDetallado(), 700);
     }
 
     eliminarProducto(id) {
@@ -79,12 +80,15 @@ class CarritoDetallado {
     }
 
     actualizarResumen(subtotal) {
-        const igv = subtotal * 0.18;
+        const igv = 0; // IGV eliminado
         const total = subtotal + igv;
 
-        document.getElementById('subtotal').textContent = `S/. ${subtotal.toFixed(2)}`;
-        document.getElementById('igv').textContent = `S/. ${igv.toFixed(2)}`;
-        document.getElementById('total').textContent = `S/. ${total.toFixed(2)}`;
+        const elSubtotal = document.getElementById('subtotal');
+        const elIgv = document.getElementById('igv');
+        const elTotal = document.getElementById('total');
+        if (elSubtotal) elSubtotal.textContent = `S/. ${subtotal.toFixed(2)}`;
+        if (elIgv) elIgv.textContent = `S/. ${igv.toFixed(2)}`;
+        if (elTotal) elTotal.textContent = `S/. ${total.toFixed(2)}`;
     }
 }
 

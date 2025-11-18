@@ -5,6 +5,8 @@ class Carrito {
         this.actualizarContador();
         this.actualizarCarritoLateral();
         this.inicializarEventos();
+        // Debounce map para actualizaciones de cantidad
+        this._debounces = {};
         
         // Asegurarse de que el carrito lateral esté oculto inicialmente
         const sidebar = document.getElementById("sidebar-carrito");
@@ -48,7 +50,17 @@ class Carrito {
             }
 
             console.info('[carrito] agregando producto:', {id, nombre, precio, cantidad});
+            // animación visual desde la imagen del producto al icono del carrito
+            this.animateAddToCart(boton, imagen);
             this.agregarProducto(id, nombre, precio, imagen, cantidad);
+        });
+
+        // Vaciar carrito / finalizar compra (delegado)
+        document.addEventListener('click', (e) => {
+            const vaciar = e.target.closest('#vaciarCarrito');
+            if (vaciar) { e.preventDefault(); this.vaciarCarrito(); }
+            const finalizar = e.target.closest('#finalizarCompra');
+            if (finalizar) { /* dirigir al detalle de carrito */ window.location.href = '/carrito'; }
         });
     }
 
@@ -79,7 +91,7 @@ class Carrito {
 
     this.guardarCarrito();
     this.actualizarCarritoLateral();
-        this.mostrarMensaje(`¡${nombre} agregado al carrito!`);
+    this.mostrarToast(`${nombre} agregado al carrito`);
         console.debug('[carrito] items ahora:', this.items);
         // Abrir sidebar automáticamente si está cerrado para que el usuario vea el cambio
         try {
@@ -93,16 +105,25 @@ class Carrito {
     }
 
     actualizarCantidad(id, nuevaCantidad) {
+        // Inmediata: setear cantidad y guardar
         const producto = this.items.find(item => (item.id === id) || (item.nombre === id));
-        if (producto) {
-            producto.cantidad = parseInt(nuevaCantidad);
-            if (producto.cantidad <= 0) {
-                this.eliminarProducto(id);
-            } else {
-                this.guardarCarrito();
-                this.actualizarCarritoLateral();
-            }
+        if (!producto) return;
+        producto.cantidad = Math.max(0, parseInt(nuevaCantidad) || 0);
+        if (producto.cantidad <= 0) {
+            this.eliminarProducto(id);
+            return;
         }
+        this.guardarCarrito();
+        this.actualizarCarritoLateral();
+    }
+
+    // Debounced quantity update to avoid many writes when user escribe rapido
+    actualizarCantidadDebounced(id, nuevaCantidad, wait = 600){
+        if (this._debounces[id]) clearTimeout(this._debounces[id]);
+        this._debounces[id] = setTimeout(()=>{
+            this.actualizarCantidad(id, nuevaCantidad);
+            delete this._debounces[id];
+        }, wait);
     }
 
     eliminarProducto(id) {
@@ -117,6 +138,13 @@ class Carrito {
     this.actualizarCarritoLateral();
     }
 
+    vaciarCarrito(){
+        this.items = [];
+        this.guardarCarrito();
+        this.actualizarCarritoLateral();
+        this.mostrarToast('Carrito vacío');
+    }
+
     guardarCarrito() {
         localStorage.setItem('carrito', JSON.stringify(this.items));
         this.actualizarContador();
@@ -127,6 +155,10 @@ class Carrito {
         if (contador) {
             const total = this.items.reduce((sum, item) => sum + item.cantidad, 0);
             contador.textContent = total.toString();
+            // animación de pulso cuando cambia
+            contador.classList.add('pulse');
+            clearTimeout(this._contadorTimeout);
+            this._contadorTimeout = setTimeout(()=> contador.classList.remove('pulse'), 300);
         }
     }
 
@@ -156,7 +188,7 @@ class Carrito {
                                value="${item.cantidad}" 
                                min="1" 
                                class="w-16 text-center border rounded"
-                               onchange="carrito.actualizarCantidad('${item.id}', this.value)">
+                               onchange="carrito.actualizarCantidadDebounced('${item.id}', this.value)">
                         <span class="text-gray-600">x S/. ${item.precio.toFixed(2)}</span>
                     </div>
                     <p class="font-semibold">S/. ${subtotal.toFixed(2)}</p>
@@ -181,16 +213,53 @@ class Carrito {
         lista.innerHTML = html;
     }
 
-    mostrarMensaje(mensaje) {
-        const div = document.createElement('div');
-        div.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transition-opacity duration-500';
-        div.textContent = mensaje;
-        document.body.appendChild(div);
-        
-        setTimeout(() => {
-            div.style.opacity = '0';
-            setTimeout(() => div.remove(), 500);
-        }, 2000);
+    mostrarToast(text){
+        // reutilizable toast para acciones del carrito
+        const key = 'cart-toast';
+        let el = document.getElementById(key);
+        if(!el){
+            el = document.createElement('div'); el.id = key; el.className = 'cart-toast';
+            document.body.appendChild(el);
+        }
+        el.textContent = text;
+        requestAnimationFrame(()=> el.classList.add('show'));
+        clearTimeout(this._toastTimeout);
+        this._toastTimeout = setTimeout(()=>{ el.classList.remove('show'); }, 2000);
+    }
+
+    // Animación: clona la imagen del producto y la anima hacia el icono del carrito
+    animateAddToCart(triggerBtn, imageSrc){
+        try{
+            const cartIcon = document.querySelector('#contador-carrito');
+            if(!cartIcon) return;
+            // encontrar imagen relevante dentro del card
+            let imgEl = null;
+            const card = triggerBtn.closest('.product-card') || triggerBtn.closest('div');
+            if(card) imgEl = card.querySelector('img');
+            const src = (imgEl && imgEl.src) ? imgEl.src : imageSrc;
+            const rectFrom = (imgEl && imgEl.getBoundingClientRect()) || triggerBtn.getBoundingClientRect();
+            const rectTo = cartIcon.getBoundingClientRect();
+
+            const clone = document.createElement('img');
+            clone.src = src || '';
+            clone.className = 'fly-img';
+            document.body.appendChild(clone);
+            // place at from
+            clone.style.left = (rectFrom.left + (rectFrom.width/2) - 24) + 'px';
+            clone.style.top = (rectFrom.top + (rectFrom.height/2) - 24) + 'px';
+            clone.style.opacity = '1';
+
+            // force reflow
+            clone.getBoundingClientRect();
+
+            // animate to target
+            const dx = rectTo.left + (rectTo.width/2) - (rectFrom.left + rectFrom.width/2);
+            const dy = rectTo.top + (rectTo.height/2) - (rectFrom.top + rectFrom.height/2);
+            clone.style.transform = `translate(${dx}px, ${dy}px) scale(.2)`;
+            clone.style.opacity = '0.85';
+
+            setTimeout(()=>{ clone.style.opacity = '0'; clone.remove(); }, 700);
+        }catch(e){ console.warn('[carrito] animateAddToCart error', e); }
     }
 }
 

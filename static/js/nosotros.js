@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Actualizar estado cada minuto
     setInterval(checkOpenStatus, 60000);
 
-    // Animación suave en los botones
+    // Animación suave en botones
     addButtonAnimations();
 });
 
@@ -117,6 +117,3 @@ const valueCards = document.querySelectorAll('.value-card');
 valueCards.forEach((card, index) => {
     card.style.animationDelay = `${index * 0.1}s`;
 });
-
-// Cambio realizado por Luis
-console.log("JS de nosotros actualizado por Luis");
