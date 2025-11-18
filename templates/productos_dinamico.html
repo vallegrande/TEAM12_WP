@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+
+{% block title %}Todos los Productos - Carnicería Pochito{% endblock %}
+
+{% block content %}
+<section class="bg-gray-100 py-16 text-center shadow-lg">
+    <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-800">Todos Nuestros Productos</h1>
+</section>
+
+<section class="py-12 px-4 sm:px-6 lg:px-8 bg-gray-100">
+    <div class="max-w-7xl mx-auto">
+        
+        <!-- Controles de filtro -->
+        <div class="flex flex-col sm:flex-row items-center justify-between mb-8 gap-4">
+            <div>
+                <label for="filter-categoria" class="mr-2 text-sm font-medium text-gray-700">Filtrar por categoría:</label>
+                <select id="filter-categoria" class="border rounded px-3 py-2 text-sm">
+                    <option value="">Todas las categorías</option>
+                </select>
+            </div>
+            
+            <div>
+                <label for="sort-precio" class="mr-2 text-sm font-medium text-gray-700">Ordenar por:</label>
+                <select id="sort-precio" class="border rounded px-3 py-2 text-sm">
+                    <option value="default">Por defecto</option>
+                    <option value="precio-asc">Precio: menor a mayor</option>
+                    <option value="precio-desc">Precio: mayor a menor</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Grid de productos -->
+        <div id="productos-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Los productos se cargarán aquí dinámicamente -->
+            <div class="col-span-full text-center py-8">
+                <p class="text-gray-600">Cargando productos...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// 🔄 Variables globales
+let productos_original = [];
+let productos_filtrados = [];
+let categorias_lista = [];
+
+// 📂 Cargar categorías
+async function cargarCategorias() {
+    try {
+        const response = await fetch('/api/categorias');
+        const data = await response.json();
+        
+        if (data.success) {
+            categorias_lista = data.categorias;
+            
+            // Llenar select de categorías
+            const select = document.getElementById('filter-categoria');
+            categorias_lista.forEach(cat => {
+                const option = document.createElement('option');
+                option.value = cat.id;
+                option.textContent = cat.nombre;
+                select.appendChild(option);
+            });
+        }
+    } catch (error) {
+        console.error('Error al cargar categorías:', error);
+    }
+}
+
+// 📦 Cargar productos
+async function cargarProductos() {
+    try {
+        const response = await fetch('/api/productos');
+        const data = await response.json();
+        
+        if (data.success) {
+            productos_original = data.productos;
+            productos_filtrados = [...productos_original];
+            mostrarProductos();
+        }
+    } catch (error) {
+        console.error('Error al cargar productos:', error);
+        mostrarError('Error al cargar los productos');
+    }
+}
+
+// 🎨 Mostrar productos en el DOM
+function mostrarProductos() {
+    const container = document.getElementById('productos-container');
+    
+    if (productos_filtrados.length === 0) {
+        container.innerHTML = '<div class="col-span-full text-center py-8"><p class="text-gray-600">No hay productos disponibles</p></div>';
+        return;
+    }
+    
+    container.innerHTML = productos_filtrados.map(prod => `
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
+            <img src="{{ url_for('static', filename='image/') }}${prod.imagen}" 
+                 alt="${prod.nombre}" 
+                 class="w-full h-56 object-cover"
+                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2224%22%3EImagen no disponible%3C/text%3E%3C/svg%3E'">
+            <div class="p-5 text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">${prod.nombre}</h3>
+                <p class="text-sm text-gray-600 mb-2 h-12 overflow-hidden">${prod.descripcion || 'Producto de calidad'}</p>
+                <p class="text-2xl font-extrabold text-pink-600 mb-2">S/. ${parseFloat(prod.precio).toFixed(2)}</p>
+                <p class="text-xs text-gray-500 mb-3">Stock: ${prod.stock} unidades</p>
+                <button data-id="${prod.id}"
+                        data-nombre="${prod.nombre}"
+                        data-precio="${prod.precio}"
+                        data-imagen="{{ url_for('static', filename='image/') }}${prod.imagen}"
+                        class="agregar-carrito bg-pink-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-pink-700 transition duration-300 transform hover:scale-105">
+                    Agregar al carrito
+                </button>
+            </div>
+        </div>
+    `).join('');
+    
+    // Re-asignar event listeners a botones de carrito
+    asignarListenersCarrito();
+}
+
+// 🔍 Filtrar por categoría
+document.getElementById('filter-categoria').addEventListener('change', function() {
+    const categoriaId = this.value;
+    
+    if (categoriaId === '') {
+        productos_filtrados = [...productos_original];
+    } else {
+        productos_filtrados = productos_original.filter(p => p.categoria_id == categoriaId);
+    }
+    
+    ordenar(); // Aplicar ordenamiento actual
+});
+
+// 📊 Ordenar productos
+document.getElementById('sort-precio').addEventListener('change', function() {
+    ordenar();
+});
+
+function ordenar() {
+    const orden = document.getElementById('sort-precio').value;
+    
+    const array = [...productos_filtrados];
+    
+    switch(orden) {
+        case 'precio-asc':
+            array.sort((a, b) => a.precio - b.precio);
+            break;
+        case 'precio-desc':
+            array.sort((a, b) => b.precio - a.precio);
+            break;
+        default:
+            array.sort((a, b) => a.id - b.id);
+    }
+    
+    productos_filtrados = array;
+    mostrarProductos();
+}
+
+// 🛒 Agregar al carrito
+function asignarListenersCarrito() {
+    document.querySelectorAll('.agregar-carrito').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const item = {
+                id: this.dataset.id,
+                nombre: this.dataset.nombre,
+                precio: parseFloat(this.dataset.precio),
+                imagen: this.dataset.imagen,
+                cantidad: 1
+            };
+            
+            // Obtener carrito actual
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            
+            // Buscar si ya existe
+            const existe = carrito.find(p => p.id === item.id);
+            
+            if (existe) {
+                existe.cantidad += 1;
+            } else {
+                carrito.push(item);
+            }
+            
+            // Guardar en localStorage
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            
+            // Mostrar mensaje
+            alert(`✅ ${item.nombre} agregado al carrito`);
+        });
+    });
+}
+
+// ❌ Mostrar error
+function mostrarError(mensaje) {
+    const container = document.getElementById('productos-container');
+    container.innerHTML = `<div class="col-span-full text-center py-8"><p class="text-red-600">${mensaje}</p></div>`;
+}
+
+// 🚀 Cargar todo al iniciar
+document.addEventListener('DOMContentLoaded', function() {
+    cargarCategorias();
+    cargarProductos();
+});
+</script>
+{% endblock %}

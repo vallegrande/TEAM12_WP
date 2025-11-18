@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Pedidos - Admin</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f5f5f5; }
+        .navbar { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; display: flex; justify-content: space-between; }
+        .container { display: grid; grid-template-columns: 200px 1fr; }
+        .sidebar { background: #2c3e50; color: white; padding: 20px 0; min-height: 100vh; }
+        .sidebar a { display: block; padding: 15px 20px; color: white; text-decoration: none; border-left: 4px solid transparent; transition: 0.3s; }
+        .sidebar a.active { background: #34495e; border-left-color: #667eea; }
+        .main-content { padding: 30px; }
+        table { width: 100%; background: white; border-collapse: collapse; margin-top: 20px; border-radius: 8px; overflow: hidden; }
+        th { background: #667eea; color: white; padding: 15px; text-align: left; }
+        td { padding: 12px 15px; border-bottom: 1px solid #eee; }
+        tr:hover { background: #f9f9f9; }
+        .badge { padding: 5px 10px; border-radius: 5px; font-size: 12px; }
+        .badge-pending { background: #ffc107; color: black; }
+        .badge-completed { background: #28a745; color: white; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>🛒 Gestión de Pedidos</h1>
+        <a href="/admin/logout" style="color: white; text-decoration: none;">Cerrar Sesión</a>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <a href="/admin/dashboard">📊 Dashboard</a>
+            <a href="/admin/usuarios">👤 Usuarios</a>
+            <a href="/admin/productos">🏪 Productos</a>
+            <a href="/admin/carrito" class="active">🛒 Pedidos</a>
+            <a href="/admin/reclamos">📘 Reclamos</a>
+        </div>
+
+        <div class="main-content">
+            <h2>Pedidos Registrados</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Cliente</th>
+                        <th>Total</th>
+                        <th>Estado</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pedido in pedidos %}
+                    <tr>
+                        <td>{{ pedido[0] }}</td>
+                        <td>{{ pedido[1] }} {{ pedido[2] }}</td>
+                        <td>S/. {{ "%.2f"|format(pedido[3] or 0) }}</td>
+                        <td>
+                            <span class="badge {% if pedido[4] == 'pendiente' %}badge-pending{% else %}badge-completed{% endif %}">
+                                {{ pedido[4] or 'pendiente' }}
+                            </span>
+                        </td>
+                        <td>{{ pedido[5] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -10,161 +10,80 @@
 </section>
 
 <section class="py-12 px-4 sm:px-6 lg:px-8 bg-gray-100">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
-        <!-- Producto: Aguja -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/aguja.jpg') }}" alt="Aguja" class="w-full h-56 object-cover">
-            <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Aguja</h3>
-                <p class="text-2xl font-extrabold text-red-600 mb-2">S/. 25.50</p>
-                <p class="text-sm text-gray-600 mb-4">Corte jugoso ideal para guisos</p>
-                <button data-id="aguja"
-                        data-nombre="Aguja"
-                        data-precio="25.50"
-                        data-imagen="{{ url_for('static', filename='image/aguja.jpg') }}"
-                        class="agregar-carrito bg-red-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300 transform hover:scale-105">
-                    Agregar al carrito
-                </button>
-            </div>
-        </div>
-
-        <!-- Producto: Bistec -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/bistec.jpg') }}" alt="Bistec" class="w-full h-56 object-cover">
-            <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Bistec</h3>
-                <p class="text-2xl font-extrabold text-red-600 mb-2">S/. 28.00</p>
-                <p class="text-sm text-gray-600 mb-4">Corte fino para sartén o parrilla</p>
-                <button data-id="bistec"
-                        data-nombre="Bistec"
-                        data-precio="28.00"
-                        data-imagen="{{ url_for('static', filename='image/bistec.jpg') }}"
-                        class="agregar-carrito bg-red-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300 transform hover:scale-105">
-                    Agregar al carrito
-                </button>
-            </div>
-        </div>
-
-        <!-- Producto: Cadera -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/cadera.jpg') }}" alt="Cadera" class="w-full h-56 object-cover">
-            <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Cadera</h3>
-                <p class="text-2xl font-extrabold text-red-600 mb-2">S/. 23.00</p>
-                <p class="text-sm text-gray-600 mb-4">Corte económico y versátil</p>
-                <button data-id="cadera"
-                        data-nombre="Cadera"
-                        data-precio="23.00"
-                        data-imagen="{{ url_for('static', filename='image/cadera.jpg') }}"
-                        class="agregar-carrito bg-red-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300 transform hover:scale-105">
-                    Agregar al carrito
-                </button>
-            </div>
-        </div>
-
-        <!-- Producto: Costillas -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/costillas.jpg') }}" alt="Costillas" class="w-full h-56 object-cover">
-            <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Costillas</h3>
-                <p class="text-2xl font-extrabold text-red-600 mb-2">S/. 30.00</p>
-                <p class="text-sm text-gray-600 mb-4">Perfectas para parrilla o horno</p>
-                <button data-id="costillas"
-                        data-nombre="Costillas"
-                        data-precio="30.00"
-                        data-imagen="{{ url_for('static', filename='image/costillas.jpg') }}"
-                        class="agregar-carrito bg-red-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300 transform hover:scale-105">
-                    Agregar al carrito
-                </button>
-            </div>
-        </div>
-
-        <!-- Producto: Falda -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/falda.jpg') }}" alt="Falda" class="w-full h-56 object-cover">
-            <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Falda</h3>
-                <p class="text-2xl font-extrabold text-red-600 mb-2">S/. 22.50</p>
-                <p class="text-sm text-gray-600 mb-4">Ideal para guisos y estofados</p>
-                <button data-id="falda"
-                        data-nombre="Falda"
-                        data-precio="22.50"
-                        data-imagen="{{ url_for('static', filename='image/falda.jpg') }}"
-                        class="agregar-carrito bg-red-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300 transform hover:scale-105">
-                    Agregar al carrito
-                </button>
-            </div>
-        </div>
-
-        <!-- Producto: Lomo -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/lomo.jpg') }}" alt="Lomo" class="w-full h-56 object-cover">
-            <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Lomo</h3>
-                <p class="text-2xl font-extrabold text-red-600 mb-2">S/. 40.00</p>
-                <p class="text-sm text-gray-600 mb-4">Corte premium para asados</p>
-                <button data-id="lomo"
-                        data-nombre="Lomo"
-                        data-precio="40.00"
-                        data-imagen="{{ url_for('static', filename='image/lomo.jpg') }}"
-                        class="agregar-carrito bg-red-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300 transform hover:scale-105">
-                    Agregar al carrito
-                </button>
-            </div>
-        </div>
-
-        <!-- Producto: Malaya -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/malaya.jpg') }}" alt="Malaya" class="w-full h-56 object-cover">
-            <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Malaya</h3>
-                <p class="text-2xl font-extrabold text-red-600 mb-2">S/. 24.50</p>
-                <p class="text-sm text-gray-600 mb-4">Corte delgado ideal para freír o saltear</p>
-                <button data-id="malaya"
-                        data-nombre="Malaya"
-                        data-precio="24.50"
-                        data-imagen="{{ url_for('static', filename='image/malaya.jpg') }}"
-                        class="agregar-carrito bg-red-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300 transform hover:scale-105">
-                    Agregar al carrito
-                </button>
-            </div>
-        </div>
-
-        <!-- Producto: Pecho -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/pecho.jpg') }}" alt="Pecho" class="w-full h-56 object-cover">
-            <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Pecho</h3>
-                <p class="text-2xl font-extrabold text-red-600 mb-2">S/. 20.00</p>
-                <p class="text-sm text-gray-600 mb-4">Corte económico para guisos largos</p>
-                <button data-id="pecho"
-                        data-nombre="Pecho"
-                        data-precio="20.00"
-                        data-imagen="{{ url_for('static', filename='image/pecho.jpg') }}"
-                        class="agregar-carrito bg-red-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300 transform hover:scale-105">
-                    Agregar al carrito
-                </button>
-            </div>
-        </div>
-
-        <!-- Producto: Solomillo -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-            <img src="{{ url_for('static', filename='image/solomillo.jpg') }}" alt="Solomillo" class="w-full h-56 object-cover">
-            <div class="p-5 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Solomillo</h3>
-                <p class="text-2xl font-extrabold text-red-600 mb-2">S/. 45.00</p>
-                <p class="text-sm text-gray-600 mb-4">Corte premium, tierno y jugoso</p>
-                <button data-id="solomillo"
-                        data-nombre="Solomillo"
-                        data-precio="45.00"
-                        data-imagen="{{ url_for('static', filename='image/solomillo.jpg') }}"
-                        class="agregar-carrito bg-red-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300 transform hover:scale-105">
-                    Agregar al carrito
-                </button>
-            </div>
-        </div>
-
+    <div class="max-w-7xl mx-auto">
+        <div id="productos-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     </div>
 </section>
+
+<script>
+// Cargar productos de categoría 1 (Carne de Res / Vacuno)
+async function cargarProductos() {
+    try {
+        const response = await fetch('/api/productos/categoria/1');
+        const data = await response.json();
+        
+        if (data.success && data.productos.length > 0) {
+            const html = data.productos.map(prod => `
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                    <img src="{{ url_for('static', filename='image/') }}${prod.imagen}" 
+                         alt="${prod.nombre}" 
+                         class="w-full h-56 object-cover"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2224%22%3EImagen no disponible%3C/text%3E%3C/svg%3E'">
+                    <div class="p-5 text-center">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">${prod.nombre}</h3>
+                        <p class="text-sm text-gray-600 mb-2 h-12 overflow-hidden">${prod.descripcion || 'Producto de calidad'}</p>
+                        <p class="text-2xl font-extrabold text-red-600 mb-2">S/. ${parseFloat(prod.precio).toFixed(2)}</p>
+                        <p class="text-xs text-gray-500 mb-3">Stock: ${prod.stock} unidades</p>
+                        <button data-id="${prod.id}"
+                                data-nombre="${prod.nombre}"
+                                data-precio="${prod.precio}"
+                                data-imagen="{{ url_for('static', filename='image/') }}${prod.imagen}"
+                                class="agregar-carrito bg-red-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300 transform hover:scale-105">
+                            Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('productos-container').innerHTML = html;
+            asignarListenersCarrito();
+        } else {
+            document.getElementById('productos-container').innerHTML = '<div class="col-span-full text-center py-8"><p class="text-gray-600">No hay productos disponibles en esta categoría</p></div>';
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('productos-container').innerHTML = '<div class="col-span-full text-center py-8"><p class="text-red-600">Error al cargar productos</p></div>';
+    }
+}
+
+// Agregar al carrito
+function asignarListenersCarrito() {
+    document.querySelectorAll('.agregar-carrito').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const item = {
+                id: this.dataset.id,
+                nombre: this.dataset.nombre,
+                precio: parseFloat(this.dataset.precio),
+                imagen: this.dataset.imagen,
+                cantidad: 1
+            };
+            
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            const existe = carrito.find(p => p.id === item.id);
+            
+            if (existe) {
+                existe.cantidad += 1;
+            } else {
+                carrito.push(item);
+            }
+            
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            alert(`✅ ${item.nombre} agregado al carrito`);
+        });
+    });
+}
+
+// Cargar al iniciar
+document.addEventListener('DOMContentLoaded', cargarProductos);
+</script>
 {% endblock %}

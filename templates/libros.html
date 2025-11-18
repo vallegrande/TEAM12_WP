@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libros | Pochito Carnes</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/libros.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dark-mode.css') }}">
+    <script src="https://kit.fontawesome.com/a2e0b1a63d.js" crossorigin="anonymous"></script>
+    <script>
+        // Inicializar tema desde localStorage
+        const tema = localStorage.getItem('pochito-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', tema);
+        document.documentElement.classList.toggle('dark', tema === 'dark');
+    </script>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+
+    <!-- NAVBAR -->
+    <nav class="w-full bg-black bg-opacity-90 backdrop-blur-sm shadow-lg fixed top-0 left-0 z-50 dark:bg-gray-900 dark:bg-opacity-95 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between text-white">
+            <a href="/" class="flex items-center gap-2 text-xl font-bold">POCHITO | Carnes</a>
+            <div class="flex gap-8 text-lg font-medium items-center">
+                <a href="/" class="hover:text-amber-400 transition">Inicio</a>
+                <a href="/nosotros" class="hover:text-amber-400 transition">Nosotros</a>
+                <a href="/libros" class="hover:text-amber-400 transition">Libros</a>
+                <button id="theme-toggle-libros" class="p-2 rounded-lg hover:bg-gray-700 transition dark:hover:bg-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1m-16 0H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                </button>
+            </div>
+            <a href="/logout" class="flex items-center gap-2 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition">
+                <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
+            </a>
+        </div>
+    </nav>
+
+    <div class="h-24"></div>
+
+    <div class="max-w-4xl mx-auto mt-14 bg-white p-10 rounded-xl shadow-lg dark:bg-gray-800 dark:text-white dark:shadow-2xl transition-colors duration-300">
+
+        <!-- BOTONES SUPERIORES -->
+        <div class="flex justify-center mb-6 gap-4">
+            <button id="btnRecomendaciones" 
+                class="bg-amber-500 text-white px-6 py-3 rounded-lg shadow-md flex items-center gap-2 font-semibold dark:bg-amber-600 dark:hover:bg-amber-700 transition-colors duration-200">
+                ⭐ Recomendaciones
+            </button>
+            <button id="btnReclamos" 
+                class="bg-gray-300 text-gray-700 px-6 py-3 rounded-lg shadow-md hover:bg-gray-400 flex items-center gap-2 font-semibold dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 transition-colors duration-200">
+                ⚠ Reclamos
+            </button>
+        </div>
+
+        <!-- SECCIÓN RECOMENDACIONES -->
+        <div id="seccionRecomendaciones">
+            <h2 class="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">Tu Opinión Cuenta ✨</h2>
+            <p class="text-center text-gray-600 dark:text-gray-300 mb-6">Déjanos tu comentario o sugerencia sobre nuestros productos o servicio.</p>
+
+            <form id="formRecomendacion" action="/libros" method="POST"
+                class="bg-yellow-50 p-6 rounded-xl border border-yellow-200 shadow-sm dark:bg-amber-900 dark:bg-opacity-20 dark:border-amber-700 transition-colors duration-300">
+                
+                <!-- Campo oculto para indicar tipo -->
+                <input type="hidden" name="tipo" value="recomendacion">
+
+                <label class="block font-semibold mb-2">Tu Mensaje:</label>
+                <textarea name="mensaje" class="w-full p-4 border border-gray-300 rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600 transition-colors duration-200" rows="4"
+                    placeholder="Ej: 'La aguja de cerdo estaba espectacular, muy tierna y jugosa. Definitivamente volveré a pedir.'"
+                    required></textarea>
+
+                <button class="mt-4 w-full bg-amber-600 hover:bg-amber-700 text-white py-3 rounded-lg shadow transition flex items-center justify-center gap-2 dark:bg-amber-700 dark:hover:bg-amber-600">
+                    <i class="fa-solid fa-paper-plane"></i> Enviar Comentario
+                </button>
+            </form>
+        </div>
+
+        <!-- SECCIÓN RECLAMOS -->
+        <div id="seccionReclamos" class="hidden">
+            <h2 class="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">Registro de Reclamos</h2>
+            <p class="text-center text-gray-600 dark:text-gray-300 mb-6">Aquí aparecerán los reclamos enviados por los clientes.</p>
+
+            <form id="formReclamos" action="/libros" method="POST"
+                class="bg-white p-6 rounded-xl shadow-md border border-gray-200 max-w-2xl mx-auto mb-10 dark:bg-gray-800 dark:border-gray-700 dark:text-white transition-colors duration-300">
+
+                <!-- Campo oculto para indicar tipo -->
+                <input type="hidden" name="tipo" value="reclamo">
+
+                <label class="block text-gray-700 font-semibold mb-2 dark:text-gray-200">Describe tu reclamo:</label>
+                <textarea id="mensajeReclamo" name="mensaje" rows="4" required
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-400 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:focus:ring-amber-500 transition-colors duration-200"
+                    placeholder="Ej: 'El pedido llegó incompleto o con retraso. Solicito una solución.'"></textarea>
+
+                <button type="submit"
+                    class="mt-4 w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg shadow transition flex items-center justify-center gap-2 dark:bg-red-700 dark:hover:bg-red-600">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Enviar Reclamo
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- RECOMENDACIONES -->
+<div id="listaRecomendaciones" class="mt-6 space-y-4">
+    {% for r in recomendaciones %}
+        <div class="p-4 bg-yellow-50 border border-yellow-200 rounded-lg dark:bg-amber-900 dark:bg-opacity-20 dark:border-amber-700 dark:text-white transition-colors duration-300">
+            <p class="font-semibold dark:text-amber-300">{{ r[0] }} {{ r[1] }} <span class="text-sm text-gray-500 dark:text-gray-400">{{ r[3] }}</span></p>
+            <p class="dark:text-gray-200">{{ r[2] }}</p>
+        </div>
+    {% else %}
+        <p class="text-gray-500 dark:text-gray-400">No hay recomendaciones todavía.</p>
+    {% endfor %}
+</div>
+
+<!-- RECLAMOS -->
+<div id="listaReclamos" class="mt-6 space-y-4">
+    {% for r in reclamos %}
+        <div class="p-4 bg-red-50 border border-red-200 rounded-lg dark:bg-red-900 dark:bg-opacity-20 dark:border-red-700 dark:text-white transition-colors duration-300">
+            <p class="font-semibold dark:text-red-300">{{ r[0] }} {{ r[1] }} <span class="text-sm text-gray-500 dark:text-gray-400">{{ r[3] }}</span></p>
+            <p class="dark:text-gray-200">{{ r[2] }}</p>
+        </div>
+    {% else %}
+        <p class="text-gray-500 dark:text-gray-400">No hay reclamos todavía.</p>
+    {% endfor %}
+</div>
+
+
+    <script src="{{ url_for('static', filename='js/dark-mode.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/libros.js') }}"></script>
+</body>
+</html>
